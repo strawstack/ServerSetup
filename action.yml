@@ -1,6 +1,4 @@
 # action.yml
-env:
-  REPO_NAME: github.event.repository.name
 name: 'Hello World'
 description: 'Greet someone and record the time'
 inputs:
@@ -16,4 +14,4 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.who-to-greet }} 
-    - ${{ env.REPO_NAME }}
+    - ${{ github.event.repository.name }}
