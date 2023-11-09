@@ -2,6 +2,11 @@
 
 Github Action to Setup a Server from New Ubuntu 22 LTS Install to Node Server and Push New Code on Commit. //
 
+# Note
+
+This should be a composite action that runs BASH shell commands as well as the necessary other steps. See doc:
+https://docs.github.com/en/actions/creating-actions/creating-a-composite-action
+
 ## Inputs
 
 ## `who-to-greet`
