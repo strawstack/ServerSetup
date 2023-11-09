@@ -15,4 +15,5 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.who-to-greet }} env.REPO_NAME
+    - ${{ inputs.who-to-greet }} 
+    - ${{ env.REPO_NAME }}
