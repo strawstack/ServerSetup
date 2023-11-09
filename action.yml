@@ -5,7 +5,7 @@ env:
   REPO_OWNER: ${{ github.repository_owner }}
   REPO_NAME: ${{ github.repository }}
 inputs:
-  github-user:  # id of input
+  repo-owner:  # id of input
     description: 'Username of owner for the repo in which this Action is used.'
     required: true
     default: ''
@@ -24,13 +24,13 @@ inputs:
   server-user:  # id of input
     description: 'The username used to connect to the server.'
     required: true
-    default: 'root'
+    default: 'root'    
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ REPO_OWNER }}
-    - ${{ REPO_NAME }}
+    - ${{ inputs.repo-owner }}
+    - ${{ inputs.repo-name }}
     - ${{ inputs.server-name }}
     - ${{ inputs.user-email }}
     - ${{ inputs.server-user }}
