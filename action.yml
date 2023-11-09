@@ -39,9 +39,14 @@ runs:
             echo "${{ inputs.ssh-key }}" > /home/runner/.ssh/id_rsa
             chmod 600 /home/runner/.ssh/id_rsa
 
-      - name: Call Remote Init Script
-        run: ssh -i /home/runner/.ssh/id_rsa ${{ inputs.server-user }}@${{ inputs.server-name }} "bash -s" < init.sh ${{ inputs.repo-owner }} ${{ inputs.repo-name }} ${{ inputs.server-name }} ${{ inputs.user-email }}
+      - name: Dump github context
+        env:
+           GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
         
-      - name: Call Remote Deploy Script
-        run: ssh -i /home/runner/.ssh/id_rsa ${{ inputs.server-user }}@${{ inputs.server-name }} "bash -s" < deploy.sh ${{ inputs.repo-owner }} ${{ inputs.repo-name }}
+      #- name: Call Remote Init Script
+      #  run: ssh -i /home/runner/.ssh/id_rsa ${{ inputs.server-user }}@${{ inputs.server-name }} "bash -s" < init.sh ${{ inputs.repo-owner }} ${{ inputs.repo-name }} ${{ inputs.server-name }} ${{ inputs.user-email }}
+        
+      #- name: Call Remote Deploy Script
+      #  run: ssh -i /home/runner/.ssh/id_rsa ${{ inputs.server-user }}@${{ inputs.server-name }} "bash -s" < deploy.sh ${{ inputs.repo-owner }} ${{ inputs.repo-name }}
 
