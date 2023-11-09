@@ -4,7 +4,7 @@ description: 'Greet someone and record the time'
 inputs:
   server-username:  # id of input
     description: 'The username used to connect to the server.'
-    required: true
+    required: false
     default: 'root'
   server-host:  # id of input
     description: 'The domain name of the server to setup.'
