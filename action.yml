@@ -46,4 +46,5 @@ runs:
         run: ssh -i /home/runner/.ssh/id_rsa ${{ inputs.server-user }}@${{ inputs.server-name }} "bash -s" < init.sh ${{ inputs.repo-owner }} ${{ inputs.repo-name }} ${{ inputs.server-name }} ${{ inputs.user-email }}
         
       - name: Call Remote Deploy Script
-        run: ssh -i /home/runner/.ssh/id_rsa ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "./deploy.sh"
+        run: ssh -i /home/runner/.ssh/id_rsa ${{ inputs.server-user }}@${{ inputs.server-name }} "bash -s" < deploy.sh ${{ inputs.repo-owner }} ${{ inputs.repo-name }}
+
