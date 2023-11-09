@@ -16,3 +16,4 @@ jobs:
           server-name: "server name"
           user-email: "user email"
           server-user: "serverusername"
+          ssh-key: "ssh key"
