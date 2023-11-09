@@ -36,8 +36,8 @@ runs:
         shell: bash
         run: |
             mkdir .ssh
-            ssh-keyscan ${{ inputs.server-name }} >> .ssh/known_hosts
-            echo "${{ inputs.ssh-key }}" > .ssh/id_rsa
+            #ssh-keyscan ${{ inputs.server-name }} >> .ssh/known_hosts
+            #echo "${{ inputs.ssh-key }}" > .ssh/id_rsa
 
       - name: Dump github context
         shell: bash
