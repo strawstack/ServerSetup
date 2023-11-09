@@ -7,6 +7,6 @@
 # 4 USER_EMAIL
 # 5 SERVER_USER (default root)
 
-ssh -i id_rsa $5@$3 "bash -s" < init.sh $1 $2 $3 $4
+ssh -i id_rsa $5@$3 "bash -s" < /init.sh $1 $2 $3 $4
 
-ssh -i id_rsa $5@$3 "bash -s" < deploy.sh $1 $2
+ssh -i id_rsa $5@$3 "bash -s" < /deploy.sh $1 $2
