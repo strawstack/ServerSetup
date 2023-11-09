@@ -1,9 +1,6 @@
 # action.yml
 name: 'Hello World'
 description: 'Greet someone and record the time'
-env:
-  REPO_OWNER: ${{ github.repository_owner }}
-  REPO_NAME: ${{ github.repository }}
 inputs:
   repo-owner:  # id of input
     description: 'Username of owner for the repo in which this Action is used.'
