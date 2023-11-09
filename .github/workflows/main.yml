@@ -11,7 +11,7 @@ jobs:
         id: hello
         uses: strawstack/ssh-node-server-setup@main
         with:
-          github-user: "user name"
+          repo-owner: "user name"
           repo-name: "repo name"
           server-name: "server name"
           user-email: "user email"
