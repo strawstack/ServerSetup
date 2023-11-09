@@ -7,13 +7,6 @@ jobs:
     name: A job to say hello
     
     steps:
-      - name: Dump github context
-        env:
-         REPO_OWNER: ${{ github.repository_owner }}
-         REPO_NAME: ${{ github.repository }}
-        run: |
-          echo "$REPO_OWNER"
-          echo "$REPO_NAME"
       - name: Hello world action step
         id: hello
         uses: strawstack/ssh-node-server-setup@main
