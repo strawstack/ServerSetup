@@ -8,6 +8,10 @@ inputs:
     description: 'Who to greet'
     required: true
     default: 'World'
+  repo_name: 
+    description: 'Name of repo'
+    required: false
+    default: REPO_NAME
 outputs:
   time: # id of output
     description: 'The time we greeted you'
