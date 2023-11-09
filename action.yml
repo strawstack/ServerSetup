@@ -8,10 +8,6 @@ inputs:
     description: 'Who to greet'
     required: true
     default: 'World'
-  repo-name: 
-    description: 'Name of repo'
-    required: false
-    default: "repo_name_default"
 outputs:
   time: # id of output
     description: 'The time we greeted you'
@@ -19,4 +15,4 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.who-to-greet }}
+    - ${{ inputs.who-to-greet }} REPO_NAME
