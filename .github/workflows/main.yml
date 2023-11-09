@@ -10,7 +10,7 @@ jobs:
     
       - name: Hello world action step
         id: hello
-        uses: ServerSetup/hello-world-docker-action@v1
+        uses: strawstack/ssh-node-server-setup@v1
         with:
           who-to-greet: 'Mona the Octocat'
           
