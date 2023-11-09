@@ -3,21 +3,18 @@ name: 'Hello World'
 description: 'Greet someone and record the time'
 inputs:
   server-username:  # id of input
-    description: 'The username used to connect to the server.'
+    description: 'The username used to connect to the server. Default is "root".'
     required: false
     default: 'root'
   server-host:  # id of input
     description: 'The domain name of the server to setup.'
     required: true
-    default: ''
   user-email:  # id of input
-    description: 'An email that will be used to request an https certificate.'
+    description: 'An email used to request an https certificate using certbot.'
     required: true
-    default: ''
   ssh-key:  # id of input
     description: 'Private ssh key.'
     required: true
-    default: ''
 runs:
   using: "composite"
   steps:
