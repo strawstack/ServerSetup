@@ -27,12 +27,23 @@ inputs:
     required: true
     default: ''    
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.repo-owner }}
-    - ${{ inputs.repo-name }}
-    - ${{ inputs.server-name }}
-    - ${{ inputs.user-email }}
-    - ${{ inputs.server-user }}
-    - ${{ inputs.ssh-key }}
+  using: "composite"
+  steps:
+  
+      - uses: actions/checkout@v4
+      
+      - name: Add Known Host
+        run: |
+            mkdir -p /home/runner/.ssh
+            ssh-keyscan ${{ secrets.DEPLOY_HOST }} >> /home/runner/.ssh/known_hosts
+            
+      - name: Create Key File
+        run: |
+          echo "${{ secrets.SSH_KEY }}" > /home/runner/.ssh/id_rsa
+          chmod 600 /home/runner/.ssh/id_rsa
+          
+      - name: Call Remote Init Script
+        run: ssh -i /home/runner/.ssh/id_rsa ${{ inputs.server-user }}@${{ inputs.server-name }} "bash -s" < init.sh ${{ inputs.repo-owner }} ${{ inputs.repo-name }} ${{ inputs.server-name }} ${{ inputs.user-email }}
+        
+      - name: Call Remote Deploy Script
+        run: ssh -i /home/runner/.ssh/id_rsa ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "./deploy.sh"
