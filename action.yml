@@ -26,8 +26,8 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.github-user }}
-    - ${{ inputs.repo-name }}
+    - ${{ github.repository_owner }}
+    - ${{ github.repository }}
     - ${{ inputs.server-name }}
     - ${{ inputs.user-email }}
     - ${{ inputs.server-user }}
