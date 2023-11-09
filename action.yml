@@ -2,15 +2,11 @@
 name: 'Hello World'
 description: 'Greet someone and record the time'
 inputs:
-  repo-owner:  # id of input
-    description: 'Username of owner for the repo in which this Action is used.'
+  server-username:  # id of input
+    description: 'The username used to connect to the server.'
     required: true
-    default: ''
-  repo-name:  # id of input
-    description: 'The name of the repo in which this Action is used.'
-    required: true
-    default: ''
-  server-name:  # id of input
+    default: 'root'
+  server-host:  # id of input
     description: 'The domain name of the server to setup.'
     required: true
     default: ''
@@ -18,14 +14,10 @@ inputs:
     description: 'An email that will be used to request an https certificate.'
     required: true
     default: ''
-  server-user:  # id of input
-    description: 'The username used to connect to the server.'
-    required: true
-    default: 'root'
   ssh-key:  # id of input
     description: 'Private ssh key.'
     required: true
-    default: ''    
+    default: ''
 runs:
   using: "composite"
   steps:
@@ -40,17 +32,16 @@ runs:
             echo "value" >> .ssh/known_hosts
             echo "${{ inputs.ssh-key }}" > .ssh/id_rsa
 
-      - name: Show Repo Owner and URL
-        shell: bash
+      - name: Env variables REPO_OWNER and REPO_URL
         run: |
-          echo ${{ github.repository_owner }}
-          echo ${{ github.event.repository.url }}.git
-
+          echo "REPO_OWNER=${{ github.repository_owner }}" >> $GITHUB_ENV
+          echo "REPO_URL=${{ github.event.repository.url }}" >> $GITHUB_ENV
+          
       #- name: Call Remote Init Script
       #   shell: bash
-      #  run: ssh -i .ssh/id_rsa ${{ inputs.server-user }}@${{ inputs.server-name }} "bash -s" < init.sh ${{ inputs.repo-owner }} ${{ inputs.repo-name }} ${{ inputs.server-name }} ${{ inputs.user-email }}
+      #  run: ssh -i .ssh/id_rsa ${{ inputs.server-user }}@${{ inputs.server-name }} "bash -s" < init.sh $REPO_OWNER $REPO_URL ${{ inputs.server-name }} ${{ inputs.user-email }}
         
       #- name: Call Remote Deploy Script
       #   shell: bash
-      #  run: ssh -i .ssh/id_rsa ${{ inputs.server-user }}@${{ inputs.server-name }} "bash -s" < deploy.sh ${{ inputs.repo-owner }} ${{ inputs.repo-name }}
+      #  run: ssh -i .ssh/id_rsa ${{ inputs.server-user }}@${{ inputs.server-name }} "bash -s" < deploy.sh $REPO_OWNER $REPO_URL
 
