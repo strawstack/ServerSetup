@@ -32,13 +32,13 @@ runs:
   
       - uses: actions/checkout@v4
       
-      - name: Add Known Host and SSH Key File 
+      - name: Add Known Host and SSH Key File
         shell: bash
         run: |
-            mkdir -p /home/runner/.ssh
-            ssh-keyscan ${{ inputs.server-name }} >> /home/runner/.ssh/known_hosts
-            echo "${{ inputs.ssh-key }}" > /home/runner/.ssh/id_rsa
-            chmod 600 /home/runner/.ssh/id_rsa
+            mkdir .ssh
+            ssh-keyscan ${{ inputs.server-name }} >> .ssh/known_hosts
+            echo "${{ inputs.ssh-key }}" > .ssh/id_rsa
+            chmod 600 .ssh/id_rsa
 
       - name: Dump github context
         shell: bash
@@ -48,9 +48,9 @@ runs:
         
       #- name: Call Remote Init Script
       #   shell: bash
-      #  run: ssh -i /home/runner/.ssh/id_rsa ${{ inputs.server-user }}@${{ inputs.server-name }} "bash -s" < init.sh ${{ inputs.repo-owner }} ${{ inputs.repo-name }} ${{ inputs.server-name }} ${{ inputs.user-email }}
+      #  run: ssh -i .ssh/id_rsa ${{ inputs.server-user }}@${{ inputs.server-name }} "bash -s" < init.sh ${{ inputs.repo-owner }} ${{ inputs.repo-name }} ${{ inputs.server-name }} ${{ inputs.user-email }}
         
       #- name: Call Remote Deploy Script
       #   shell: bash
-      #  run: ssh -i /home/runner/.ssh/id_rsa ${{ inputs.server-user }}@${{ inputs.server-name }} "bash -s" < deploy.sh ${{ inputs.repo-owner }} ${{ inputs.repo-name }}
+      #  run: ssh -i .ssh/id_rsa ${{ inputs.server-user }}@${{ inputs.server-name }} "bash -s" < deploy.sh ${{ inputs.repo-owner }} ${{ inputs.repo-name }}
 
