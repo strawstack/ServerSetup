@@ -35,11 +35,11 @@ runs:
       - name: Add Known Host
         run: |
             mkdir -p /home/runner/.ssh
-            ssh-keyscan ${{ secrets.DEPLOY_HOST }} >> /home/runner/.ssh/known_hosts
+            ssh-keyscan ${{ inputs.server-name }} >> /home/runner/.ssh/known_hosts
             
       - name: Create Key File
         run: |
-          echo "${{ secrets.SSH_KEY }}" > /home/runner/.ssh/id_rsa
+          echo "${{ inputs.ssh-key }}" > /home/runner/.ssh/id_rsa
           chmod 600 /home/runner/.ssh/id_rsa
           
       - name: Call Remote Init Script
