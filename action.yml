@@ -2,16 +2,27 @@
 name: 'Hello World'
 description: 'Greet someone and record the time'
 inputs:
-  who-to-greet:  # id of input
+  github-user:  # id of input
+    description: 'Username of owner for the repo in which this Action is used.'
+    required: true
+    default: 'null'
+  repo-name:  # id of input
+    description: 'The name of the repo in which this Action is used.'
+    required: true
+    default: 'null'
+  server-name:  # id of input
     description: 'Who to greet'
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+    default: 'null'
+  user-email:  # id of input
+    description: 'Who to greet'
+    required: true
+    default: 'null'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.who-to-greet }} 
-    - ${{ github.event.repository.name }}
+    - ${{ inputs.github-user }}
+    - ${{ inputs.repo-name }}
+    - ${{ inputs.server-name }}
+    - ${{ inputs.user-email }}
