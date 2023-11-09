@@ -40,14 +40,12 @@ runs:
             echo "value" >> .ssh/known_hosts
             echo "${{ inputs.ssh-key }}" > .ssh/id_rsa
 
-      - name: Dump github context
+      - name: Show Repo Owner and URL
         shell: bash
-        env:
-           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
-          echo "$GITHUB_CONTEXT"
-          echo ${{ github.repository.event.url }}
-        
+          echo ${{ github.repository_owner }}
+          echo ${{ github.event.repository.url }}.git
+
       #- name: Call Remote Init Script
       #   shell: bash
       #  run: ssh -i .ssh/id_rsa ${{ inputs.server-user }}@${{ inputs.server-name }} "bash -s" < init.sh ${{ inputs.repo-owner }} ${{ inputs.repo-name }} ${{ inputs.server-name }} ${{ inputs.user-email }}
