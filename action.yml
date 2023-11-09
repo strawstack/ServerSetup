@@ -1,6 +1,9 @@
 # action.yml
 name: 'Hello World'
 description: 'Greet someone and record the time'
+env:
+  REPO_OWNER: ${{ github.repository_owner }}
+  REPO_NAME: ${{ github.repository }}
 inputs:
   github-user:  # id of input
     description: 'Username of owner for the repo in which this Action is used.'
@@ -26,8 +29,8 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ github.repository_owner }}
-    - ${{ github.repository }}
+    - ${{ REPO_OWNER }}
+    - ${{ REPO_NAME }}
     - ${{ inputs.server-name }}
     - ${{ inputs.user-email }}
     - ${{ inputs.server-user }}
