@@ -38,7 +38,6 @@ runs:
             mkdir .ssh
             ssh-keyscan ${{ inputs.server-name }} >> .ssh/known_hosts
             echo "${{ inputs.ssh-key }}" > .ssh/id_rsa
-            chmod 600 .ssh/id_rsa
 
       - name: Dump github context
         shell: bash
