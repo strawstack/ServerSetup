@@ -1,11 +1,11 @@
 # Arguments
-# 1 GITHUB_USER
-# 2 REPO_NAME
+# 1 REPO_OWNER
+# 2 REPO_URL
 # 3 SERVER_NAME
 # 4 USER_EMAIL
 
 # Run Command
-# ssh -i id_rsa root@host "bash -s" < init.sh GITHUB_USER REPO_NAME SERVER_NAME USER_EMAIL
+# ssh -i id_rsa root@host "bash -s" < init.sh REPO_OWNER REPO_URL SERVER_NAME USER_EMAIL
 
 if test -f ~/deploy.sh; then
     echo "deploy.sh found"
@@ -27,18 +27,18 @@ sudo apt-get install -y nginx
 sudo npm install -g pm2
 
 # TODO: Can we get the current repo HTTPS url during a Github Action?
-git clone https://github.com/$1/$2.git
+git clone $2 repo
 
 sudo rm /etc/nginx/sites-enabled/default
 
 # TODO: Can we access the current repo name from a Github Action in order to predict the name of the clone folder?
 # Could we explicitly set the clone folder name via the git clone command?
-cd ~/$2
+cd ~/repo
 
 servername=$3
 sed "s/SERVER_NAME_HERE/${servername}/g" < nginx.conf > site.nginx.conf
 
-sudo ln -s ~/$2/site.nginx.conf /etc/nginx/sites-enabled/site.nginx.conf
+sudo ln -s ~/repo/site.nginx.conf /etc/nginx/sites-enabled/site.nginx.conf
 
 sudo service nginx restart
 
@@ -55,5 +55,5 @@ pm2 startup
 pm2 save
 
 # TODO: See above todo about the clone folder name.
-cp ~/$2/deploy.sh ~/deploy.sh
+cp ~/repo/deploy.sh ~/deploy.sh
 chmod u+x ~/deploy.sh
