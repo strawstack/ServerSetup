@@ -6,6 +6,9 @@
 # 3 SERVER_NAME
 # 4 USER_EMAIL
 # 5 SERVER_USER (default root)
+# 6 SSH_KEY
+
+
 
 ssh -i id_rsa $5@$3 "bash -s" < /init.sh $1 $2 $3 $4
 
