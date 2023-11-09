@@ -6,6 +6,5 @@
 # 3 SERVER_NAME
 # 4 USER_EMAIL
 # 5 SERVER_USER (default root)
-# 6 SERVER_HOST
 
-ssh -i id_rsa $5@$6 "bash -s" < init.sh $1 $2 $3 $4
+ssh -i id_rsa $5@$3 "bash -s" < init.sh $1 $2 $3 $4
