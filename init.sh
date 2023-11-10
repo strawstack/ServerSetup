@@ -5,8 +5,8 @@
 # Run Command
 # ssh -i id_rsa root@host "bash -s" < init.sh REPO_OWNER REPO_URL SERVER_NAME USER_EMAIL
 
-if test -f ~/deploy.sh; then
-    echo "deploy.sh found"
+if test -f ~/skip_init.txt; then
+    echo "skip_init"
     exit 0
 fi
 echo "deploy.sh not found"
