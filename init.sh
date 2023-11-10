@@ -26,16 +26,12 @@ sudo apt install git
 sudo apt-get install -y nginx
 sudo npm install -g pm2
 
-git clone $2 repo
-
 sudo rm /etc/nginx/sites-enabled/default
 
-cd ~/repo
-
 servername=$3
-sed "s/SERVER_NAME_HERE/${servername}/g" < nginx.conf > site.nginx.conf
+sed "s/SERVER_NAME_HERE/${servername}/g" < ~/nginx.conf > ~/site.nginx.conf
 
-sudo ln -s ~/repo/site.nginx.conf /etc/nginx/sites-enabled/site.nginx.conf
+sudo ln -s ~/site.nginx.conf /etc/nginx/sites-enabled/site.nginx.conf
 
 sudo service nginx restart
 
