@@ -40,8 +40,9 @@ runs:
       - name: Call Remote Init Script
         shell: bash
         run: |
+          scp -i /home/runner/.ssh/id_rsa ${{ github.action_path }}/nginx.conf ${{ inputs.server-username }}@${{ inputs.server-host }}:~/nginx.conf
           ssh -i /home/runner/.ssh/id_rsa ${{ inputs.server-username }}@${{ inputs.server-host }} "bash -s" < ${{ github.action_path }}/init.sh ${{ inputs.server-host }} ${{ inputs.user-email }}
-          scp -i /home/runner/.ssh/id_rsa ${{ github.action_path }}/{nginx.conf,deploy.sh} ${{ inputs.server-username }}@${{ inputs.server-host }}:~
+          scp -i /home/runner/.ssh/id_rsa ${{ github.action_path }}/deploy.sh ${{ inputs.server-username }}@${{ inputs.server-host }}:~/deploy.sh
           
       - name: Call Remote Deploy Script
         shell: bash
