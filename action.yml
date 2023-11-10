@@ -37,12 +37,12 @@ runs:
           echo "REPO_OWNER=${{ github.repository_owner }}" >> $GITHUB_ENV
           echo "REPO_URL=${{ github.event.repository.url }}" >> $GITHUB_ENV
 
-      - name: Call Remote Deploy Script
-        shell: bash
-        run: ssh -i /home/runner/.ssh/id_rsa ${{ inputs.server-username }}@${{ inputs.server-host }} "bash -s" < ${{ github.action_path }}/deploy.sh $REPO_OWNER $REPO_URL
-
       - name: Call Remote Init Script
         shell: bash
         run: |
-          scp -i /home/runner/.ssh/id_rsa ${{ github.action_path }}/deploy.sh ${{ inputs.server-username }}@${{ inputs.server-host }}:~/deploy.sh
           ssh -i /home/runner/.ssh/id_rsa ${{ inputs.server-username }}@${{ inputs.server-host }} "bash -s" < ${{ github.action_path }}/init.sh $REPO_OWNER $REPO_URL ${{ inputs.server-host }} ${{ inputs.user-email }}
+          scp -i /home/runner/.ssh/id_rsa ${{ github.action_path }}/deploy.sh ${{ inputs.server-username }}@${{ inputs.server-host }}:~/deploy.sh
+      
+      - name: Call Remote Deploy Script
+        shell: bash
+        run: ssh -i /home/runner/.ssh/id_rsa ${{ inputs.server-username }}@${{ inputs.server-host }} "bash -s" < ${{ github.action_path }}/deploy.sh $REPO_OWNER $REPO_URL
