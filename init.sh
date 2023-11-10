@@ -49,5 +49,3 @@ npm install
 pm2 start server.mjs
 pm2 startup
 pm2 save
-
-chmod u+x ~/deploy.sh
