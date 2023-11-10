@@ -17,7 +17,7 @@ git clone $1 repo
 cd ~/repo
 
 npm install
-pm2 start server.mjs -f
+pm2 start -f npm -- start
 
 pm2 startup
 pm2 save
