@@ -28,3 +28,8 @@ with:
 # Add Release Tag
 git tag -a -m "My first action release" v1
 git push --follow-tags
+
+# Archive
+
+## Dump Github variable to inspect contents
+- https://stackoverflow.com/questions/62803531/repository-name-as-a-github-action-environment-variable
