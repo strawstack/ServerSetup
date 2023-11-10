@@ -1,14 +1,13 @@
 on: [push]
 
 jobs:
-  hello_world_job:
+  deploy_server_job:
     
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: A job to setup an Ubuntu 22 LTS Server and Deploy a Node JS App. 
     
     steps:
-      - name: Hello world action step
-        id: hello
+      - name: Deploy Server Step
         uses: strawstack/ssh-node-server-setup@main
         with:
           server-host: ${{ secrets.SERVER_HOST }}
