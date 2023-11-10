@@ -43,9 +43,3 @@ sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
 
 sudo certbot --noninteractive --nginx --agree-tos --cert-name certbot_cert -d $3 -m $4
-
-npm install
-
-pm2 start server.mjs
-pm2 startup
-pm2 save
