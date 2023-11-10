@@ -26,13 +26,10 @@ sudo apt install git
 sudo apt-get install -y nginx
 sudo npm install -g pm2
 
-# TODO: Can we get the current repo HTTPS url during a Github Action?
 git clone $2 repo
 
 sudo rm /etc/nginx/sites-enabled/default
 
-# TODO: Can we access the current repo name from a Github Action in order to predict the name of the clone folder?
-# Could we explicitly set the clone folder name via the git clone command?
 cd ~/repo
 
 servername=$3
@@ -45,7 +42,6 @@ sudo service nginx restart
 sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
 
-# TODO: This command requires args passed into the script by the Github Action
 sudo certbot --noninteractive --nginx --agree-tos --cert-name certbot_cert -d $3 -m $4
 
 npm install
@@ -53,7 +49,3 @@ npm install
 pm2 start server.mjs
 pm2 startup
 pm2 save
-
-# TODO: See above todo about the clone folder name.
-cp ~/repo/deploy.sh ~/deploy.sh
-chmod u+x ~/deploy.sh
