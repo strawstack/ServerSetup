@@ -31,12 +31,6 @@ runs:
             #ssh-agent -a /tmp/ssh_agent.sock > /dev/null
             #ssh-add /home/runner/.ssh/id_rsa
 
-      - name: Env variables REPO_OWNER and REPO_URL
-        shell: bash
-        run: |
-          echo "REPO_OWNER=${{ github.repository_owner }}" >> $GITHUB_ENV
-          echo "REPO_URL=${{ github.event.repository.url }}" >> $GITHUB_ENV
-
       - name: Call Remote Init Script
         shell: bash
         run: |
@@ -47,4 +41,4 @@ runs:
       - name: Call Remote Deploy Script
         shell: bash
         run: |
-          ssh -i /home/runner/.ssh/id_rsa ${{ inputs.server-username }}@${{ inputs.server-host }} "chmod u+x ~/deploy.sh && bash -s" < ${{ github.action_path }}/deploy.sh $REPO_OWNER $REPO_URL
+          ssh -i /home/runner/.ssh/id_rsa ${{ inputs.server-username }}@${{ inputs.server-host }} "chmod u+x ~/deploy.sh && bash -s" < ${{ github.action_path }}/deploy.sh ${{ github.event.repository.url }}
