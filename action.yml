@@ -35,9 +35,9 @@ runs:
 
       - name: Call Remote Deploy Script
         shell: bash
-        run: ssh -i .ssh/id_rsa ${{ inputs.server-user }}@${{ inputs.server-host }} "bash -s" < deploy.sh $REPO_OWNER $REPO_URL
+        run: ssh -i .ssh/id_rsa ${{ inputs.server-username }}@${{ inputs.server-host }} "bash -s" < deploy.sh $REPO_OWNER $REPO_URL
 
       - name: Call Remote Init Script
         shell: bash
-        run: ssh -i .ssh/id_rsa ${{ inputs.server-user }}@${{ inputs.server-host }} "bash -s" < init.sh $REPO_OWNER $REPO_URL ${{ inputs.server-host }} ${{ inputs.user-email }}
+        run: ssh -i .ssh/id_rsa ${{ inputs.server-username }}@${{ inputs.server-host }} "bash -s" < init.sh $REPO_OWNER $REPO_URL ${{ inputs.server-host }} ${{ inputs.user-email }}
         
