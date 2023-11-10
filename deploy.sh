@@ -6,20 +6,18 @@
 # Command
 # ssh -i ~/.ssh/id_rsa root@host "bash -s" < deploy.sh REPO_OWNER REPO_URL
 
-if test -f ~/deploy.sh; then
-    echo "deploy.sh found"
+echo "deploy.sh found"
 
-    git config --global user.name "Github Actions"
-    git config --global user.email "actions@github.com"
-    
-    rm -rf repo
-    
-    git clone $1 repo
-    cd ~/repo
-    
-    npm install
-    pm2 start server.mjs -f
+git config --global user.name "Github Actions"
+git config --global user.email "actions@github.com"
 
-    pm2 startup
-    pm2 save
-fi
+rm -rf repo
+
+git clone $1 repo
+cd ~/repo
+
+npm install
+pm2 start server.mjs -f
+
+pm2 startup
+pm2 save
