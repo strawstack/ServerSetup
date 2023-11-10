@@ -1,6 +1,6 @@
 # action.yml
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Deploy Server'
+description: 'Setup Ubuntu 22 LTS Server to Host Node Server.'
 inputs:
   server-username:  # id of input
     description: 'The username used to connect to the server. Default is "root".'
