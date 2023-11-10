@@ -41,4 +41,4 @@ runs:
       - name: Call Remote Deploy Script
         shell: bash
         run: |
-          ssh -i /home/runner/.ssh/id_rsa ${{ inputs.server-username }}@${{ inputs.server-host }} "chmod u+x ~/deploy.sh && bash -s" < ${{ github.action_path }}/deploy.sh ${{ github.event.repository.url }}
+          ssh -i /home/runner/.ssh/id_rsa ${{ inputs.server-username }}@${{ inputs.server-host }} "bash -s" < ${{ github.action_path }}/deploy.sh ${{ github.event.repository.url }}
