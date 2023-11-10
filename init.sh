@@ -9,7 +9,6 @@ if test -f ~/skip_init.txt; then
     echo "skip_init"
     exit 0
 fi
-echo "deploy.sh not found"
 
 sudo apt-get -y update
 
