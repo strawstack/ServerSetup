@@ -1,8 +1,6 @@
 # Arguments
-# 1 REPO_OWNER
-# 2 REPO_URL
-# 3 SERVER_NAME
-# 4 USER_EMAIL
+# 1 SERVER_NAME
+# 2 USER_EMAIL
 
 # Run Command
 # ssh -i id_rsa root@host "bash -s" < init.sh REPO_OWNER REPO_URL SERVER_NAME USER_EMAIL
@@ -28,7 +26,7 @@ sudo npm install -g pm2
 
 sudo rm /etc/nginx/sites-enabled/default
 
-servername=$3
+servername=$1
 sed "s/SERVER_NAME_HERE/${servername}/g" < ~/nginx.conf > ~/site.nginx.conf
 
 sudo ln -s ~/site.nginx.conf /etc/nginx/sites-enabled/site.nginx.conf
@@ -38,4 +36,4 @@ sudo service nginx restart
 sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
 
-sudo certbot --noninteractive --nginx --agree-tos --cert-name certbot_cert -d $3 -m $4
+sudo certbot --noninteractive --nginx --agree-tos --cert-name certbot_cert -d $1 -m $2
