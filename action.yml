@@ -23,9 +23,13 @@ runs:
       - name: Add Known Host and SSH Key File
         shell: bash
         run: |
-            mkdir .ssh
-            ssh-keyscan ${{ inputs.server-host }} >> .ssh/known_hosts
-            echo "${{ inputs.ssh-key }}" > .ssh/id_rsa
+            # See: https://maxschmitt.me/posts/github-actions-ssh-key
+            mkdir -p /home/runner/.ssh
+            ssh-keyscan ${{ inputs.server-host }} >> /home/runner/.ssh/known_hosts
+            echo "${{ inputs.ssh-key }}" > /home/runner/.ssh/id_rsa
+            chmod 600 /home/runner/.ssh/id_rsa
+            #ssh-agent -a /tmp/ssh_agent.sock > /dev/null
+            #ssh-add /home/runner/.ssh/id_rsa
 
       - name: Env variables REPO_OWNER and REPO_URL
         shell: bash
@@ -35,9 +39,9 @@ runs:
 
       - name: Call Remote Deploy Script
         shell: bash
-        run: ssh -i .ssh/id_rsa ${{ inputs.server-username }}@${{ inputs.server-host }} "bash -s" < deploy.sh $REPO_OWNER $REPO_URL
+        run: ssh -i /home/runner/.ssh/id_rsa ${{ inputs.server-username }}@${{ inputs.server-host }} "bash -s" < deploy.sh $REPO_OWNER $REPO_URL
 
       - name: Call Remote Init Script
         shell: bash
-        run: ssh -i .ssh/id_rsa ${{ inputs.server-username }}@${{ inputs.server-host }} "bash -s" < init.sh $REPO_OWNER $REPO_URL ${{ inputs.server-host }} ${{ inputs.user-email }}
+        run: ssh -i /home/runner/.ssh/id_rsa ${{ inputs.server-username }}@${{ inputs.server-host }} "bash -s" < init.sh $REPO_OWNER $REPO_URL ${{ inputs.server-host }} ${{ inputs.user-email }}
         
