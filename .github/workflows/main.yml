@@ -11,6 +11,6 @@ jobs:
         id: hello
         uses: strawstack/ssh-node-server-setup@main
         with:
-          server-host: ${{ secrets.serverhost }}
-          user-email: ${{ secrets.useremail }}
-          ssh-key: ${{ secrets.sshkey }}
+          server-host: ${{ secrets.SERVER_HOST }}
+          user-email: ${{ secrets.USER_EMAIL }}
+          ssh-key: ${{ secrets.SSH_KEY }}
