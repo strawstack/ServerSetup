@@ -44,5 +44,5 @@ runs:
       - name: Call Remote Init Script
         shell: bash
         run: |
-          cp ~/repo/deploy.sh ~/deploy.sh
+          scp -i /home/runner/.ssh/id_rsa ${{ github.action_path }}/deploy.sh ${{ inputs.server-username }}@${{ inputs.server-host }}:~/deploy.sh
           ssh -i /home/runner/.ssh/id_rsa ${{ inputs.server-username }}@${{ inputs.server-host }} "bash -s" < ${{ github.action_path }}/init.sh $REPO_OWNER $REPO_URL ${{ inputs.server-host }} ${{ inputs.user-email }}
