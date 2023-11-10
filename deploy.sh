@@ -10,6 +10,8 @@
 if test -f ~/deploy.sh; then
     echo "deploy.sh found"
     
+    chmod u+x ~/deploy.sh
+    
     git config --global user.name "Github Actions"
     git config --global user.email "actions@github.com"
     
@@ -19,5 +21,8 @@ if test -f ~/deploy.sh; then
     cd ~/repo
     
     npm install
-    pm2 restart server.mjs
+    pm2 start server.mjs -f
+
+    pm2 startup
+    pm2 save
 fi
