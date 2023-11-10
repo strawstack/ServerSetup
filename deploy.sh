@@ -9,9 +9,7 @@
 
 if test -f ~/deploy.sh; then
     echo "deploy.sh found"
-    
-    chmod u+x ~/deploy.sh
-    
+
     git config --global user.name "Github Actions"
     git config --global user.email "actions@github.com"
     
