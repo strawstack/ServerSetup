@@ -6,7 +6,7 @@
 # Command
 # ssh -i ~/.ssh/id_rsa root@host "bash -s" < deploy.sh REPO_OWNER REPO_URL
 
-echo "deploy.sh found"
+touch ~/skip_init.txt
 
 git config --global user.name "Github Actions"
 git config --global user.email "actions@github.com"
