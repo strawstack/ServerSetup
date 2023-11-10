@@ -16,7 +16,7 @@ if test -f ~/deploy.sh; then
     rm -rf repo
     
     git clone $2 repo
-    cd repo
+    cd ~/repo
     
     npm install
     pm2 restart server.mjs
