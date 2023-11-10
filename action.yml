@@ -24,7 +24,7 @@ runs:
         shell: bash
         run: |
             mkdir .ssh
-            ssh-keyscan ${{ inputs.server-name }} >> .ssh/known_hosts
+            ssh-keyscan ${{ inputs.server-host }} >> .ssh/known_hosts
             echo "${{ inputs.ssh-key }}" > .ssh/id_rsa
 
       - name: Env variables REPO_OWNER and REPO_URL
@@ -35,9 +35,9 @@ runs:
 
       - name: Call Remote Deploy Script
         shell: bash
-        run: ssh -i .ssh/id_rsa ${{ inputs.server-user }}@${{ inputs.server-name }} "bash -s" < deploy.sh $REPO_OWNER $REPO_URL
+        run: ssh -i .ssh/id_rsa ${{ inputs.server-user }}@${{ inputs.server-host }} "bash -s" < deploy.sh $REPO_OWNER $REPO_URL
 
       - name: Call Remote Init Script
         shell: bash
-        run: ssh -i .ssh/id_rsa ${{ inputs.server-user }}@${{ inputs.server-name }} "bash -s" < init.sh $REPO_OWNER $REPO_URL ${{ inputs.server-name }} ${{ inputs.user-email }}
+        run: ssh -i .ssh/id_rsa ${{ inputs.server-user }}@${{ inputs.server-host }} "bash -s" < init.sh $REPO_OWNER $REPO_URL ${{ inputs.server-host }} ${{ inputs.user-email }}
         
