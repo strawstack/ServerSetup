@@ -32,12 +32,12 @@ runs:
         run: |
           echo "REPO_OWNER=${{ github.repository_owner }}" >> $GITHUB_ENV
           echo "REPO_URL=${{ github.event.repository.url }}" >> $GITHUB_ENV
-          
-      - name: Call Remote Init Script
-         shell: bash
-        run: ssh -i .ssh/id_rsa ${{ inputs.server-user }}@${{ inputs.server-name }} "bash -s" < init.sh $REPO_OWNER $REPO_URL ${{ inputs.server-name }} ${{ inputs.user-email }}
-        
+
       - name: Call Remote Deploy Script
          shell: bash
         run: ssh -i .ssh/id_rsa ${{ inputs.server-user }}@${{ inputs.server-name }} "bash -s" < deploy.sh $REPO_OWNER $REPO_URL
 
+      - name: Call Remote Init Script
+         shell: bash
+        run: ssh -i .ssh/id_rsa ${{ inputs.server-user }}@${{ inputs.server-name }} "bash -s" < init.sh $REPO_OWNER $REPO_URL ${{ inputs.server-name }} ${{ inputs.user-email }}
+        
