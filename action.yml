@@ -19,13 +19,7 @@ runs:
   using: "composite"
   steps:
       - uses: actions/checkout@v4
-
-      - name: Dump github context
-        run:   echo "$GITHUB_CONTEXT"
-        shell: bash
-        env:
-         GITHUB_CONTEXT: ${{ toJson(github) }}
-   
+      
       - name: Add Known Host and SSH Key File
         shell: bash
         run: |
