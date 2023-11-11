@@ -24,17 +24,17 @@ The username used to connect to the server. Default is "root".
 ## `server-host`
 
 **Required** The domain name of the server to setup. Example: name.rch.app (this domain should point to the server IP). 
-See: https://help.hover.com/hc/en-us/articles/217282457-Managing-DNS-records-
+- See: https://help.hover.com/hc/en-us/articles/217282457-Managing-DNS-records-
 
 ## `user-email`
 
 **Required** An email used to request an https certificate using certbot.
-See: https://certbot.eff.org/
+- See: https://certbot.eff.org/
 
 ## `ssh-key`
 
 **Required** Private ssh key. Public ssh key should be placed on the server.
-See: https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server
+- See: https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server
 
 ## Example usage
 
@@ -54,10 +54,5 @@ jobs:
 ```
 
 # Add Release Tag
-git tag -a -m "My first action release" v1
-git push --follow-tags
-
-# Debuging Actions
-
-## Dump Github variable to inspect contents
-- https://stackoverflow.com/questions/62803531/repository-name-as-a-github-action-environment-variable
+- git tag -a -m "My first action release" v1
+- git push --follow-tags
