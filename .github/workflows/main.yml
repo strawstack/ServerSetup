@@ -1,4 +1,4 @@
-on: []
+on: [] # on: [push]
 
 jobs:
   deploy_server_job:
