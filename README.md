@@ -4,19 +4,6 @@ Github Action to Setup a Server from New Ubuntu 22 LTS Install to Node Server, a
 
 ## Inputs
 
-  server-username:  # id of input
-    description: ''
-    required: false
-    default: 'root'
-  server-host:  # id of input
-    description: ''
-    required: true
-  user-email:  # id of input
-    description: ''
-    required: true
-  ssh-key:  # id of input
-    description: ''
-
 ## `server-username`
 
 The username used to connect to the server. Default is "root".
